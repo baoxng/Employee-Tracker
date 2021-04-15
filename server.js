@@ -103,21 +103,68 @@ function intializePrompt(){
 
 //Add departments, role, employees
 
+function addEmployee(){
 
-//View departments, roles, employees
+}
 
+function addDepartment(){
 
-//Update employee roles
+}
 
+function addRole(){
 
-//Update employee managers
+}
 
+//View departments, roles, employees, employees by manager
 
-//View employees by manager
+function viewAllEmployees(){
 
+}
+
+function viewAllDept(){
+
+}
+
+function viewAllRole(){
+
+}
+
+function viewByManager(){
+
+}
+
+//Update employee roles, employee managers
+
+function updateEmployeeRole(){
+
+}
+
+function updateEmployeeManager(){
+
+}
 
 //Delete departments, roles and employees
 
+function deleteEmployee(){
+
+}
+
+function deleteRole(){
+
+}
+
+function deleteDepartment(){
+
+}
 
 //View the total utilized budget of a department
 
+function totalUtilizedBudget(){
+
+}
+
+//Exit Application
+
+function exitApp(){
+    
+}
