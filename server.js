@@ -104,7 +104,43 @@ function intializePrompt(){
 //Add departments, role, employees
 
 function addEmployee(){
-
+    inquirer. prompt([
+        {
+            name: "firstname",
+            type: "input",
+            message: "Enter first name of Employee."
+        },
+        {
+            name: "lastname",
+            type: "input",
+            message: "Enter last name of Employee."
+        },
+        {
+            name: "role",
+            type: "list",
+            choices: selectRole()
+        },
+        {
+            name: "choice",
+            type: "list",
+            message: "Who is the manager?",
+            choices: selectManager()
+        }
+    ]).then(function (value){
+        const roleID= selectRole().indexOf(value.role) + 1
+        const managerID= selectManager().indexOf(value.choice)+ 1
+        connection.query("INSERT INTO employee SET ?"),
+        {
+            first_name: value.firstName,
+            last_name: value.lastName,
+            manager_id: managerID,
+            role_id: roleID
+        }, (err)=> {
+            if (err) throw err
+            console.table(value)
+            intializePrompt()
+        }
+    })
 }
 
 function addDepartment(){
@@ -166,5 +202,5 @@ function totalUtilizedBudget(){
 //Exit Application
 
 function exitApp(){
-    
+
 }
