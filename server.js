@@ -12,12 +12,6 @@ const connection= mysql.createConnection({
     database:"employee_trackerdb"
 });
 
-connection.connect(function(err) {
-    if (err) throw err;
-    console.log("Connected as id " + connection.threadId);
-    intializePrompt();
-  });
-
 //Prompt question
 
 function intializePrompt(){
@@ -192,5 +186,10 @@ function updateEmployeeRole(idRole, employeeId){
 }
 
 
+connection.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected as id " + connection.threadId);
+    intializePrompt();
+  });
 
 
