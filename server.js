@@ -2,6 +2,8 @@
 const inquirer= require('inquirer');
 const mysql= require('mysql');
 const cTable= require('console.table');
+var figlet= require('figlet');
+const chalk= require('chalk');
 
 //Port connection
 const connection= mysql.createConnection({
@@ -11,6 +13,19 @@ const connection= mysql.createConnection({
     password:"0N!yme14",
     database:"employee_trackerdb"
 });
+
+//Figlet 
+function initalizeDb(){
+    figlet('Welcome to the Employee Tracker', function(err, data) {
+        if (err) {
+            console.log(chalk.red('Something went wrong...'));
+            console.dir(err);
+            return;
+        }
+        console.log(data)
+        intializePrompt();
+    });
+}
 
 //Prompt question
 
@@ -180,16 +195,33 @@ function addRole(){
 
 //Update employee roles
 
-function updateEmployeeRole(idRole, employeeId){
-    connection.query('UPDATE employee SET role_id = ? WHERE id = ?', [idRole, employeeId]);
+function updateEmployeeRole(){
+    inquirer.prompt(
+    [{
+        type: "input",
+        message: "First name of employee you would like to update:",
+        name: "employeeUpdate"
+      },
 
+      {
+        type: "input",
+        message: "Change to which role?",
+        name: "updateRole"
+      }
+    ])
+    .then(function(res) {
+      connection.query('UPDATE employee SET role_id=? WHERE first_name= ?',[res.updateRole, res.employeeUpdate],function(err, res) {
+        if (err) throw err;
+        console.table(res);
+        intializePrompt();
+      });
+    });
 }
 
 
 connection.connect(function(err) {
+    initalizeDb();
     if (err) throw err;
     console.log("Connected as id " + connection.threadId);
-    intializePrompt();
   });
-
 
